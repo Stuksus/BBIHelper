@@ -7,7 +7,7 @@ def write_msg(session,user_id, message): #Write message to user
     rand=random.randint(-9223372036854775807,9223372036854775807)
     session.method('messages.send', {'peer_id': user_id,'random_id':rand ,'message': str(message)})
 
-def Auth(token="a8539a058b11bda41c5ca39a2f4799c0a4fcceb1bef882d614b4997ee282574f0a6864bb734a17ddc4e69",scope="manage"): #Auth like group
+def Auth(token="20a05757ed47a66141aa90d860ad521861dcfb20d1f1197c5438f05e99739e1f14d088ace6c36d7065ee7",scope="manage"): #Auth like group
     return vk_api.VkApi(token =token,scope=scope)
 
 def getLongPoll(session,idGroup=186392580): #create or update LongPoll server
@@ -25,7 +25,7 @@ def getNameById(session,userIds):
 
 
 
-vkSession = vk_api.VkApi('+'+"79160873425","123123qq",scope="wall")
+vkSession = vk_api.VkApi('+'+"79267574013","Smetanin2019!",scope="wall")
 vkSession.auth()
 
 
