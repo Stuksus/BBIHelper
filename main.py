@@ -3,7 +3,6 @@ import vk_api
 import requests
 
 
-
 def write_msg(session,user_id, message): #Write message to user
     rand=random.randint(-9223372036854775807,9223372036854775807)
     session.method('messages.send', {'peer_id': user_id,'random_id':rand ,'message': str(message)})
