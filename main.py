@@ -14,8 +14,8 @@ def getLongPoll(session,idGroup=186392580): #create or update LongPoll server
         return session.method("groups.getLongPollServer",{"group_id":idGroup})
 def getMembersOfPoll(session,owner_id,poll_id,friends_count=99):
         return session.method("polls.getById",{"owner_id":owner_id,"poll_id":poll_id,"friends_count":friends_count})
-def getMembersOfGroup(session,peer_id,group_id):
-    return session.method("messages.getConversationMembers",{"peer_id":peer_id,"group_id":group_id})
+def getMembersOfGroup(session,peer_id):
+    return session.method("messages.getConversationMembers",{"peer_id":peer_id,"group_id":186392580})
 
 def getNameById(session,userIds):
     teg=''
@@ -32,8 +32,8 @@ vkSession.auth()
 vk=Auth()
 LongPoll=getLongPoll(vk)
 
-def sendNullMembers(sessionP,sessionG,ownerId,pollId,peerId,groupId):
-    membersOfGroup=getMembersOfGroup(sessionG,peerId,groupId)
+def sendNullMembers(sessionP,sessionG,ownerId,pollId,peerId):
+    membersOfGroup=getMembersOfGroup(sessionG,peerId)
     idsGroup=[]
     for id in membersOfGroup["items"]:
         if id["member_id"]>0:
@@ -88,7 +88,7 @@ while True:
                     pollInfo=element['object']['attachments'][0]['poll']
                     ownerId=pollInfo['owner_id']
                     pollId=pollInfo['id']
-            sendNullMembers(vkSession,vk,ownerId,pollId,peerId,groupId)
+            sendNullMembers(vkSession,vk,ownerId,pollId,peerId)
 
     LongPoll['ts'] = response['ts']
 
