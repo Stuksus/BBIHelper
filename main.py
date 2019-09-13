@@ -60,7 +60,7 @@ try:
 
         print("nullVote")
         print(nullVote)
-
+        message=''
         for i in nullVote:
             name=getNameById(vk,i)
             print(name)
