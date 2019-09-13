@@ -40,7 +40,6 @@ while True:
             for id in membersOfGroup["items"]:
                 if id["member_id"]>0:
                     idsGroup.append(id["member_id"])
-            print(idsGroup)
             nullVote=[]
             try:
                 ids = []
