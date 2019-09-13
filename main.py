@@ -73,7 +73,7 @@ try:
         if updates:
             for element in updates:
                 print(element)
-                if element['object']['fwd_messages']:
+                if element['object']['fwd_messages']!=[]:
                     if element['object']['fwd_messages'][0]['attachments'][0]['type']=='poll':
                         groupId=element['group_id']
                         peerId=element['object']['peer_id']
@@ -81,19 +81,20 @@ try:
                         ownerId=pollInfo['owner_id']
                         pollId=pollInfo['id']
                 else:
-
-                    if element['object']['attachments'][0]['type']=='poll':
-                        groupId=element['group_id']
-                        peerId=element['object']['peer_id']
-                        print(groupId)
-                        pollInfo=element['object']['attachments'][0]['poll']
-                        ownerId=pollInfo['owner_id']
-                        pollId=pollInfo['id']
+                    if element['object']['attachments']!=[]:
+                        if element['object']['attachments'][0]['type']=='poll':
+                            groupId=element['group_id']
+                            peerId=element['object']['peer_id']
+                            print(groupId)
+                            pollInfo=element['object']['attachments'][0]['poll']
+                            ownerId=pollInfo['owner_id']
+                            pollId=pollInfo['id']
                 sendNullMembers(vkSession,vk,ownerId,pollId,peerId,groupId)
 
         LongPoll['ts'] = response['ts']
 except:
     vk2 = Auth()
     var = traceback.format_exc()
-    print(var)
     write_msg(vk2,163298402,var)
+
+
