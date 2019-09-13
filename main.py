@@ -70,7 +70,7 @@ while True:
             print(res)
         while True:
             response =requests.get(LongPoll["server"]+"?act=a_check&key="+LongPoll['key']+"&ts="+LongPoll['ts']+"&wait=25").json()
-            if response["failed"]==False:
+            if response!="{'failed': 2}":
                 updates = response['updates']
                 print("all OK")
                 if updates:
