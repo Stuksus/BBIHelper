@@ -4,6 +4,7 @@ import requests
 import traceback
 
 
+
 def write_msg(session,user_id, message): #Write message to user
     rand=random.randint(-9223372036854775807,9223372036854775807)
     session.method('messages.send', {'peer_id': user_id,'random_id':rand ,'message': str(message)})
@@ -46,20 +47,20 @@ try:
             for id in getMembersOfPoll(sessionP, ownerId, pollId)["friends"]:
                 ids.append(id["id"])
             print(ids)
-        except KeyError:
+        except:
             nullVote=idsGroup
 
         if nullVote!=[]:
             for i in idsGroup:
                 for j in ids:
                     if i!=j:
-                        print(i)
+
                         nullVote.append(i)
 
 
         print("nullVote")
         print(nullVote)
-        message=''
+
         for i in nullVote:
             name=getNameById(vk,i)
             print(name)
@@ -90,8 +91,9 @@ try:
                             ownerId=pollInfo['owner_id']
                             pollId=pollInfo['id']
                 sendNullMembers(vkSession,vk,ownerId,pollId,peerId,groupId)
-
         LongPoll['ts'] = response['ts']
+
+
 except:
     vk2 = Auth()
     var = traceback.format_exc()
