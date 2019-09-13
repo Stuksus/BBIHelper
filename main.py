@@ -70,29 +70,32 @@ while True:
             print(res)
         while True:
             response =requests.get(LongPoll["server"]+"?act=a_check&key="+LongPoll['key']+"&ts="+LongPoll['ts']+"&wait=25").json()
-            updates = response['updates']
-            if updates:
-                for element in updates:
-                    print(element)
-                    if element['object']['text'].find("club186392580")>=0:
-                        if element['object']['fwd_messages']!=[]:
-                            if element['object']['fwd_messages'][0]['attachments'][0]['type']=='poll':
-                                groupId=element['group_id']
-                                peerId=element['object']['peer_id']
-                                pollInfo=element['object']['fwd_messages'][0]['attachments'][0]['poll']
-                                ownerId=pollInfo['owner_id']
-                                pollId=pollInfo['id']
-                        else:
-                            if element['object']['attachments']!=[]:
-                                if element['object']['attachments'][0]['type']=='poll':
+            print("respons:")
+            print(response)
+            if response:
+                updates = response['updates']
+                if updates:
+                    for element in updates:
+                        print(element)
+                        if element['object']['text'].find("club186392580")>=0:
+                            if element['object']['fwd_messages']!=[]:
+                                if element['object']['fwd_messages'][0]['attachments'][0]['type']=='poll':
                                     groupId=element['group_id']
                                     peerId=element['object']['peer_id']
-                                    print(groupId)
-                                    pollInfo=element['object']['attachments'][0]['poll']
+                                    pollInfo=element['object']['fwd_messages'][0]['attachments'][0]['poll']
                                     ownerId=pollInfo['owner_id']
                                     pollId=pollInfo['id']
-                        sendNullMembers(vkSession,vk,ownerId,pollId,peerId,groupId)
-            LongPoll['ts'] = response['ts']
+                            else:
+                                if element['object']['attachments']!=[]:
+                                    if element['object']['attachments'][0]['type']=='poll':
+                                        groupId=element['group_id']
+                                        peerId=element['object']['peer_id']
+                                        print(groupId)
+                                        pollInfo=element['object']['attachments'][0]['poll']
+                                        ownerId=pollInfo['owner_id']
+                                        pollId=pollInfo['id']
+                            sendNullMembers(vkSession,vk,ownerId,pollId,peerId,groupId)
+                LongPoll['ts'] = response['ts']
 
 
     except:
