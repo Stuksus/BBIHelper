@@ -46,7 +46,6 @@ while True:
                 ids = []
                 for id in getMembersOfPoll(sessionP, ownerId, pollId)["friends"]:
                     ids.append(id["id"])
-                print(ids)
             except:
                 nullVote=idsGroup
 
@@ -56,26 +55,17 @@ while True:
                         if i!=j:
 
                             nullVote.append(i)
-
-
-            print("nullVote")
-            print(nullVote)
             message=''
             for i in nullVote:
                 name=getNameById(vk,i)
-                print(name)
                 message+="[id"+str(i)+"|"+str(name)+"]"+", "
-            print(message)
             res=write_msg(sessionG,peerId,message)
-            print(res)
         while True:
             response =requests.get(LongPoll["server"]+"?act=a_check&key="+LongPoll['key']+"&ts="+LongPoll['ts']+"&wait=25").json()
             if response!="{'failed': 2}":
                 updates = response['updates']
-                print("all OK")
                 if updates:
                     for element in updates:
-                        print(element)
                         if element['object']['text'].find("club186392580")>=0:
                             if element['object']['fwd_messages']!=[]:
                                 if element['object']['fwd_messages'][0]['attachments'][0]['type']=='poll':
@@ -89,7 +79,6 @@ while True:
                                     if element['object']['attachments'][0]['type']=='poll':
                                         groupId=element['group_id']
                                         peerId=element['object']['peer_id']
-                                        print(groupId)
                                         pollInfo=element['object']['attachments'][0]['poll']
                                         ownerId=pollInfo['owner_id']
                                         pollId=pollInfo['id']
