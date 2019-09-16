@@ -61,6 +61,7 @@ while True:
             res=write_msg(sessionG,peerId,message){}
         while True:
             response =requests.get(LongPoll["server"]+"?act=a_check&key="+LongPoll['key']+"&ts="+LongPoll['ts']+"&wait=25").json()
+            print(str(response).find('failed')<0)
             if str(response).find('failed')<0:
                 updates = response['updates']
                 if updates:
@@ -89,5 +90,4 @@ while True:
         vk2 = Auth()
         var = traceback.format_exc()
         write_msg(vk2,163298402,var)
-
 
