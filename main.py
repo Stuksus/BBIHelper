@@ -58,7 +58,7 @@ while True:
             for i in nullVote:
                 name=getNameById(vk,i)
                 message+="[id"+str(i)+"|"+str(name)+"]"+", "
-            res=write_msg(sessionG,peerId,message){}
+            res=write_msg(sessionG,peerId,message)
         while True:
             response =requests.get(LongPoll["server"]+"?act=a_check&key="+LongPoll['key']+"&ts="+LongPoll['ts']+"&wait=25").json()
             print(str(response).find('failed')<0)
