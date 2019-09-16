@@ -5,9 +5,9 @@ import traceback
 
 
 
-def write_msg(session,user_id, message): #Write message to user
+def write_msg(session,user_id, message,): #Write message to user
     rand=random.randint(-9223372036854775807,9223372036854775807)
-    session.method('messages.send', {'peer_id': user_id,'random_id':rand ,'message': str(message)})
+    session.method('messages.send', {'peer_id': user_id,'random_id':rand,'message': str(message)})
 
 def Auth(token="a8539a058b11bda41c5ca39a2f4799c0a4fcceb1bef882d614b4997ee282574f0a6864bb734a17ddc4e69",scope="manage"): #Auth like group
     return vk_api.VkApi(token =token,scope=scope)
@@ -54,7 +54,7 @@ while True:
                         if i!=j:
 
                             nullVote.append(i)
-            message=''
+            message='ВАЖНЫЙ ОПРОС!! Если вы нашли себя в этом спике, значит вы еще не голосовали! Ай яй яй \n'
             for i in nullVote:
                 name=getNameById(vk,i)
                 message+="[id"+str(i)+"|"+str(name)+"]"+", "
@@ -73,6 +73,7 @@ while True:
                                     pollInfo=element['object']['fwd_messages'][0]['attachments'][0]['poll']
                                     ownerId=pollInfo['owner_id']
                                     pollId=pollInfo['id']
+
                             else:
                                 if element['object']['attachments']!=[]:
                                     if element['object']['attachments'][0]['type']=='poll':
