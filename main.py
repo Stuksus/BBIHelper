@@ -54,7 +54,7 @@ while True:
                         if i!=j:
 
                             nullVote.append(i)
-            message='ВАЖНЫЙ ОПРОС!! Если вы нашли себя в этом спике, значит вы еще не голосовали! Ай яй яй \n'
+            message='ВАЖНЫЙ ОПРОС!! Если вы нашли себя в этом списке, значит вы еще не голосовали! Ай яй яй \n'
             for i in nullVote:
                 name=getNameById(vk,i)
                 message+="[id"+str(i)+"|"+str(name)+"]"+", "
