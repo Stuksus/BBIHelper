@@ -47,11 +47,12 @@ while True:
                     ids.append(id["id"])
             except:
                 nullVote=idsGroup
-
+            print(ids)
             if nullVote==[]:
                 for i in ids:
                     idsGroup.remove(i)
             message='ВАЖНЫЙ ОПРОС!! Если вы нашли себя в этом списке, значит вы еще не голосовали! Ай яй яй \n'
+            print(idsGroup)
             for i in idsGroup:
                 name=getNameById(vk,i)
                 message+="[id"+str(i)+"|"+str(name)+"]"+", "
@@ -62,6 +63,7 @@ while True:
                 updates = response['updates']
                 if updates:
                     for element in updates:
+                        print(element)
                         if element['object']['text'].find("club186392580")>=0:
                             if element['object']['fwd_messages']!=[]:
                                 if element['object']['fwd_messages'][0]['attachments'][0]['type']=='poll':
