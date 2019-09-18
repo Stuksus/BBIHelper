@@ -22,7 +22,7 @@ def getMembersOfGroup(session,peer_id,group_id):
 def getNameById(session,userIds):
     teg=''
     data=session.method('users.get',{"user_ids":userIds})[0]
-    teg+=data['first_name']
+    teg+=data['first_name']+" "+data['last_name']
     return teg
 
 while True:
@@ -47,12 +47,12 @@ while True:
                     ids.append(id["id"])
             except:
                 nullVote=idsGroup
-            print(ids)
+            
             if nullVote==[]:
                 for i in ids:
                     idsGroup.remove(i)
             message='ВАЖНЫЙ ОПРОС!! Если вы нашли себя в этом списке, значит вы еще не голосовали! Ай яй яй \n'
-            print(idsGroup)
+            
             for i in idsGroup:
                 name=getNameById(vk,i)
                 message+="[id"+str(i)+"|"+str(name)+"]"+", "
@@ -63,7 +63,6 @@ while True:
                 updates = response['updates']
                 if updates:
                     for element in updates:
-                        print(element)
                         if element['object']['text'].find("club186392580")>=0:
                             if element['object']['fwd_messages']!=[]:
                                 if element['object']['fwd_messages'][0]['attachments'][0]['type']=='poll':
