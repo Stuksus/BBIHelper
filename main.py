@@ -49,13 +49,10 @@ while True:
                 nullVote=idsGroup
 
             if nullVote==[]:
-                for i in idsGroup:
-                    for j in ids:
-                        if i!=j:
-
-                            nullVote.append(i)
+                for i in ids:
+                    idsGroup.remove(i)
             message='ВАЖНЫЙ ОПРОС!! Если вы нашли себя в этом списке, значит вы еще не голосовали! Ай яй яй \n'
-            for i in nullVote:
+            for i in idsGroup:
                 name=getNameById(vk,i)
                 message+="[id"+str(i)+"|"+str(name)+"]"+", "
             res=write_msg(sessionG,peerId,message)
