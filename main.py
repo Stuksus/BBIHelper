@@ -22,7 +22,7 @@ def getMembersOfGroup(session,peer_id,group_id):
 def getNameById(session,userIds):
     teg=''
     data=session.method('users.get',{"user_ids":userIds})[0]
-    teg+=data['first_name']+" "+data['last_name']
+    teg+=data['first_name']
     return teg
 
 while True:
